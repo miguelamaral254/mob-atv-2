@@ -11,7 +11,7 @@ function App() {
   };
 
   const handleSuccess = () => {
-    setSelectedUser(null); // Limpa o formulário e o usuário selecionado após uma ação de sucesso
+    setSelectedUser(null); 
   };
 
   return (

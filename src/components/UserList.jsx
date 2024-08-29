@@ -1,39 +1,40 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Use a instância do axios configurada
+import axios from 'axios'; 
 
+// eslint-disable-next-line react/prop-types
 const UserList = ({ onEdit }) => {
   const [users, setUsers] = useState([]);
-  const [error, setError] = useState(null); // Adicione um estado para armazenar erros
+  const [error, setError] = useState(null); 
 
-  // Função para buscar usuários
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('/api/users'); // Use o prefixo /api que será redirecionado pelo proxy configurado
-      setUsers(response.data); // Atualiza o estado com a lista de usuários
+      const response = await axios.get('/api/users'); 
+      setUsers(response.data); 
     } catch (error) {
       console.error('Erro ao buscar usuários:', error);
-      setError('Erro ao buscar usuários. Verifique o console para mais detalhes.'); // Define uma mensagem de erro
+      setError('Erro ao buscar usuários. Verifique o console para mais detalhes.');
     }
   };
 
   useEffect(() => {
-    fetchUsers(); // Busca os usuários quando o componente é montado
+    fetchUsers(); 
   }, []);
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/users/${id}`); // Deleta o usuário pelo ID
-      fetchUsers(); // Atualiza a lista de usuários após a deleção
+      await axios.delete(`/api/users/${id}`); 
+      fetchUsers(); 
     } catch (error) {
       console.error('Erro ao deletar o usuário:', error);
-      setError('Erro ao deletar o usuário. Verifique o console para mais detalhes.'); // Define uma mensagem de erro
+      setError('Erro ao deletar o usuário. Verifique o console para mais detalhes.'); 
     }
   };
 
   return (
     <div className="container mt-4">
       <h2 className="mb-4">Lista de Usuários</h2>
-      {error && <div className="alert alert-danger">{error}</div>} {/* Exibe mensagem de erro, se houver */}
+      {error && <div className="alert alert-danger">{error}</div>} 
       <ul className="list-group">
         {users.map(user => (
           <li key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
