@@ -9,8 +9,8 @@ const UserList = ({ onEdit }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('/api/users'); 
-      setUsers(response.data); 
+      const response = await axios.get('/api/users'); // Use o prefixo /api que será redirecionado pelo proxy configurado
+      setUsers(response.data); // Atualiza o estado com a lista de usuários
     } catch (error) {
       console.error('Erro ao buscar usuários:', error);
       setError('Erro ao buscar usuários. Verifique o console para mais detalhes.');
